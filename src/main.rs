@@ -1,25 +1,26 @@
 use std::io;
 
 fn main() {
+    println!("Enter your weight (kg):");
     let mut input = String::new();
-    io::stdin().read_line(&mut input);
+    io::stdin().read_line(&mut input).unwrap();
 
-    let s1 = &input;
-    let s2 = &input;
-    println!("{} {}", s1, s2);  
+    // borrow_string(&input);
+    // own_string(input);
 
-    som_fn(&mut input);
-
-    let mut weight = calculate_weight_on_mars(77.6);
-    weight *= 1000.0;
+    let weight: f32 = input.trim().parse().unwrap();
     
-    println!("Weight on Mars: {}g", weight);
+    println!("Weight on Mars: {}kg", calculate_weight_on_mars(weight));
 }
 
 fn calculate_weight_on_mars(weight: f32) -> f32{
     (weight/ 9.81) * 3.711
 }
 
-fn som_fn(s: &mut String){
-    s.push_str("aa");
+fn borrow_string(s: &String){
+    println!("{}",s);
+}
+
+fn own_string(s: String){
+    println!("{}",s);
 }
